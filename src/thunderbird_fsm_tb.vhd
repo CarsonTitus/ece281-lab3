@@ -114,7 +114,7 @@ begin
     -- Test 2: reset FSm to idle state (all off)
 	   w_left <= '0'; 
 	   w_right <= '0';
-	   wait for k_clk_period * 2;
+	   wait for k_clk_period + 1 ns;
 	   assert w_lights_L = "000" and w_lights_R = "000"
 	       report "Idle failed, lights still on" severity failure;
 	       
