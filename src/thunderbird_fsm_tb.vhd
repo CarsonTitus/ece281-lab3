@@ -140,10 +140,10 @@ begin
 	   w_left <= '0'; 
 	   w_right <= '1';
 	   wait for k_clk_period + 1 ns;	
-	   assert w_lights_L = "000" and w_lights_R = "001"
+	   assert w_lights_L = "000" and w_lights_R = "100"
 	       report "Right turn step 1 failed." severity failure;
 	   wait for k_clk_period;
-	   assert w_lights_L = "000" and w_lights_R = "011"
+	   assert w_lights_L = "000" and w_lights_R = "110"
 	       report "Right turn step 2 failed." severity failure;
 	   wait for k_clk_period;
 	   assert w_lights_L = "000" and w_lights_R = "111"
