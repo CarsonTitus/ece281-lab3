@@ -114,7 +114,7 @@ begin
     -- Test 2: reset FSm to idle state (all off)
 	   w_left <= '0'; 
 	   w_right <= '0';
-	   wait for k_clk_period * 5;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "000"
 	       report "Idle failed, lights still on" severity failure;
 	       
@@ -122,16 +122,16 @@ begin
     -- Checks sequence of L0->L0,L1->L0,L1,L2->off(idle)
 	   w_left <= '1'; 
 	   w_right <= '0';
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "001" and w_lights_R = "000"
 	       report "Left turn step 1 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "011" and w_lights_R = "000"
 	       report "Left turn step 2 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "111" and w_lights_R = "000"
 	       report "Left turn step 3 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "000"
 	       report "Return to Idle failed." severity failure;	      
 	        	   
@@ -139,26 +139,26 @@ begin
     -- Checks sequence of R0->R0,R1->R0,R1,R2->off(idle)
 	   w_left <= '0'; 
 	   w_right <= '1';
-	   wait for k_clk_period * 1;	
+	   wait for k_clk_period * 2;	
 	   assert w_lights_L = "000" and w_lights_R = "001"
 	       report "Right turn step 1 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "011"
 	       report "Right turn step 2 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "111"
 	       report "Right turn step 3 failed." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "000"
 	       report "Return to Idle failed." severity failure;	
 
     -- Test 5: Hazard lights 
 	   w_left <= '1'; 
 	   w_right <= '1';
-	   wait for k_clk_period * 1;	
+	   wait for k_clk_period * 2;	
 	   assert w_lights_L = "111" and w_lights_R = "111"
 	       report "Hazard check failed, all lights not on." severity failure;
-	   wait for k_clk_period * 1;
+	   wait for k_clk_period * 2;
 	   assert w_lights_L = "000" and w_lights_R = "000"
 	       report "Reset failed, lights still on." severity failure;
 	   wait;
